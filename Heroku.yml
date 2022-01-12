@@ -2,4 +2,4 @@ build:
   docker:
       worker: Dockerfile
 run:
-   worker: python3 -m Hustlebot
+   worker: python3 -m Meowbot
