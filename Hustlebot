@@ -4,19 +4,19 @@
 _repolink () {
     local regex
     regex='(https?)://github.com/.+/.+'
-    if [[ $HUSTLE_REPO == "Hustlebot" ]]
+    if [[ $MEOW_REPO == "Meowbot" ]]
     then
         echo "aHR0cHM6Ly9naXRodWIuY29tL2thYWwwNDA4L01lb3dVc2VyYm90L2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
-    elif [[ $HUSTLE_REPO == "Hustlebot" ]]
+    elif [[ $MEOW_REPO == "Meowbot" ]]
     then
         echo "aHR0cHM6Ly9naXRodWIuY29tL2thYWwwNDA4L01lb3dVc2VyYm90L2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
-    elif [[ $HUSTLE_REPO =~ $regex ]]
+    elif [[ $MEOW_REPO =~ $regex ]]
     then
-        if [[ $HUSTLE_REPO_BRANCH ]]
+        if [[ $MEOW_REPO_BRANCH ]]
         then
-            echo "${HUSTLE_REPO}/archive/${HUSTLE_REPO_BRANCH}.zip"
+            echo "${MEOW_REPO}/archive/${MEOW_REPO_BRANCH}.zip"
         else
-            echo "${HUSTLE_REPO}/archive/master.zip"
+            echo "${MEOW_REPO}/archive/master.zip"
         fi
     else
         echo "aHR0cHM6Ly9naXRodWIuY29tL2thYWwwNDA4L01lb3dVc2VyYm90L2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
@@ -26,7 +26,7 @@ _repolink () {
 
 start_bot () {
     local zippath
-    zippath="Hustleuserbot.zip"
+    zippath="Meowuserbot.zip"
     echo "  Downloading source code ..."
     wget -q $(_repolink) -O "$zippath"
     echo "  Unpacking Data ..."
@@ -36,10 +36,10 @@ start_bot () {
     rm -rf "$zippath"
     sleep 5
     cd $HUSTLEPATH
-    echo "  • Starting Hustlebot •  "
+    echo "  • Starting Meowbot •  "
 
     python3 ../setup/updater.py ../requirements.txt requirements.txt
-    python3 -m Hustlebot
+    python3 -m Meowbot
 }
 
 start_bot
