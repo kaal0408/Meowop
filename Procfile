@@ -1,1 +1,1 @@
-worker: bash Hustlebot
+worker: bash Meowbot
