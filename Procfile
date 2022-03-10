@@ -1,1 +1,1 @@
-worker: python3 Destroy.py
+worker: python3 Meowbot.py
