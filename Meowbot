@@ -5,10 +5,10 @@ _get_zlink () {
     regex='(https?)://github.com/.+/.+'
     if [[ $UPSTREAM_REPO == "pro" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0lUUy1MRUdFTkRCT1QvTEVHRU5EQk9UL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA==" | base64 -d
     elif [[ $UPSTREAM_REPO == "multi" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0xFR0VORFRFU1QvTEVHRU5EQk9UL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA==" | base64 -d
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         if [[ $UPSTREAM_REPO_BRANCH ]]
@@ -18,7 +18,7 @@ _get_zlink () {
             echo "${UPSTREAM_REPO}/archive/master.zip"
         fi
     else
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0lUUy1MRUdFTkRCT1QvTEVHRU5EQk9UL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA==" | base64 -d
     fi
 }
 
@@ -28,15 +28,15 @@ _get_repolink () {
     regex='(https?)://github.com/.+/.+'
     if [[ $UPSTREAM_REPO == "pro" ]]
     then
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL0lUUy1MRUdFTkRCT1QvTEVHRU5EQk9U" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA" | base64 -d`
     elif [[ $UPSTREAM_REPO == "multi" ]]
     then
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL0xFR0VORFRFU1QvTEVHRU5EQk9U" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA" | base64 -d`
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         rlink=`echo "${UPSTREAM_REPO}"`
     else
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL0lUUy1MRUdFTkRCT1QvTEVHRU5EQk9U" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RoYW5vc3VzZXIvTWVvd1VzZXJib3QvYXJjaGl2ZS9tYWluLnppcA" | base64 -d`
     fi
     echo "$rlink"
 }
@@ -49,7 +49,7 @@ _run_python_code() {
 _run_catpackgit() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/LEGEND-AI/LEGENDBOT"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/Thanosuser/MeowUserbot"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -73,7 +73,7 @@ repo.heads[ACTIVE_BRANCH_NAME].checkout(True) ')
 
 _start_bot () {
     local zippath
-    zippath="LEGENDBOT.zip"
+    zippath="MeowUserbot.zip"
     echo "  Downloading source code ..."
     wget -q $(_get_zlink) -O "$zippath"
     echo "  Unpacking Data ..."
@@ -87,18 +87,9 @@ _start_bot () {
     _run_catgit
     python3 ../setup/updater.py ../requirements.txt requirements.txt
     chmod -R 755 bin
-    echo "    Starting LegendUserBot    "
+    echo "    Starting MeowUserBot    "
 
-    echo "
-    '##::::'##::'######::'########:'########::'########:::'#######::'########:
-     ##:::: ##:'##... ##: ##.....:: ##.... ##: ##.... ##:'##.... ##:... ##..::
-     ##:::: ##: ##:::..:: ##::::::: ##:::: ##: ##:::: ##: ##:::: ##:::: ##::::
-     ##:::: ##:. ######:: ######::: ########:: ########:: ##:::: ##:::: ##::::
-     ##:::: ##::..... ##: ##...:::: ##.. ##::: ##.... ##: ##:::: ##:::: ##::::
-     ##:::: ##:'##::: ##: ##::::::: ##::. ##:: ##:::: ##: ##:::: ##:::: ##::::
-    . #######::. ######:: ########: ##:::. ##: ########::. #######::::: ##::::
-    :.......::::......:::........::..:::::..::........::::.......::::::..:::::
-    "
+    
     python3 -m userbot
 }
 
