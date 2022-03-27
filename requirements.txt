@@ -1,4 +1,5 @@
 aiofiles
+opencv-python
 aiohttp
 apscheduler
 cairosvg
