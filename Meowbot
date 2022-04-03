@@ -90,7 +90,7 @@ _start_bot () {
     echo "    Starting MeowUserBot    "
 
     
-    python3 -m userbot
+    python3 -m Meowbot
 }
 
 _start_bot
